@@ -4,7 +4,7 @@
 #include "GfxObject.h"
 
 class GfxRectangle: public GfxObject{
-    unsigned int width;
+    int width;
     public:
         GfxRectangle(unsigned int xCoord, unsigned int yCoord, unsigned int heightNum, unsigned int widthNum);
         void draw(char table[50][50]);
