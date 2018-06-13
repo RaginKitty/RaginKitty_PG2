@@ -18,11 +18,13 @@ int main()
     GfxTriangle d1(25,32,5); //x, y, height
     d1.draw(screen);
 
+
     printScreen(screen);
 
     r1.remove(screen);
     r1.move(10,0);
     r1.draw(screen);
+
     printScreen(screen);
 
     //r1.remove(screen);
@@ -37,7 +39,6 @@ void deleteScreen(char table[50][50]){
             table[i][j] = ' ';
         }
     }
-    return;
 }
 
 void printScreen(char table[50][50]){
@@ -47,6 +48,5 @@ void printScreen(char table[50][50]){
         }
         std::cout << std::endl;
     }
-    return;
 }
 
