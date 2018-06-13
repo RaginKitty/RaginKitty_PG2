@@ -13,4 +13,3 @@ class GfxTriangle: public GfxObject{
 };
 
 #endif // GFXTRIANGLE_H_INCLUDED
-
