@@ -10,4 +10,3 @@ void GfxObject::move(int delta_x, int delta_y){
     coordX = coordX + delta_x;
     coordY = coordY + delta_y;
 }
-
