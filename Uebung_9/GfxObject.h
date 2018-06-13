@@ -5,9 +5,9 @@
 
 class GfxObject{
     protected:
-        unsigned int coordX;
-        unsigned int coordY;
-        unsigned int height;
+        int coordX;
+        int coordY;
+        int height;
     public:
         GfxObject();
         GfxObject(unsigned int xCoord, unsigned int yCoord, unsigned int heightNum);
