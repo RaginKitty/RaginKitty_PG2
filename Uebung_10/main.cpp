@@ -10,20 +10,20 @@ using namespace std;
 
 int main()
 {
-    /*
-    book A1;
+/*
+    food A1;
     A1.input();
 
-    book A2;
+    food A2;
     A2.input();
 
-    book A3;
+    food A3;
     A3.input();
 
     A1.printout();
     A2.printout();
     A3.printout();
-    */
+*/
 
     FoodList Listf;
     BookList Listb;
@@ -34,7 +34,8 @@ int main()
 
     Listf.loadfromfile("food.txt");
     //Listf.first = &A1;
-    //A1.next = &A2;
+    //Listf.first->next = &A2;
+    //Listf.first->next->next = &A3;
     Listf.printout();
 
     List* plist=&Listf;
@@ -53,7 +54,7 @@ int main()
     List* plist;
     plist=&Listb;
     plist->printout();
-    plist->savetofile("foodtest.txt");
+    plist->savetofile("booktest.txt");
     */
 
     /*
