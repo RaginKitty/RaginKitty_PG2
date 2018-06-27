@@ -10,30 +10,57 @@ using namespace std;
 
 int main()
 {
-  FoodList Listf;
-  BookList Listb;
-  MaterialList Listm;
+    /*
+    book A1;
+    A1.input();
 
-  cout<<"---food test---\n";
+    book A2;
+    A2.input();
 
-  Listf.loadfromfile("food.txt");
-  Listf.printout();
+    book A3;
+    A3.input();
 
-  List* plist=&Listf;
-  plist->printout();
-  plist->savetofile("foodtest.txt");
+    A1.printout();
+    A2.printout();
+    A3.printout();
+    */
 
-  /*
-  cout<<"---book test---\n";
-  Listb.loadfromfile("books.txt");
-  Listb.printout();
-  plist=&Listb;
-  plist->printout();
+    FoodList Listf;
+    BookList Listb;
+    MaterialList Listm;
 
-  cout<<"---material test---\n";
-  Listm.loadfromfile("materials.txt");
-  Listm.printout();
-  plist=&Listm;
-  plist->printout();
-  */
+
+    cout<<"---food test---\n";
+
+    Listf.loadfromfile("food.txt");
+    //Listf.first = &A1;
+    //A1.next = &A2;
+    Listf.printout();
+
+    List* plist=&Listf;
+    plist->printout();
+    plist->savetofile("foodtest.txt");
+
+
+    /*
+    cout<<"---book test---\n";
+    //Listb.loadfromfile("books.txt");
+    Listb.first = &A1;
+    A1.next = &A2;
+    A2.next = &A3;
+
+    Listb.printout();
+    List* plist;
+    plist=&Listb;
+    plist->printout();
+    plist->savetofile("foodtest.txt");
+    */
+
+    /*
+    cout<<"---material test---\n";
+    Listm.loadfromfile("materials.txt");
+    Listm.printout();
+    plist=&Listm;
+    plist->printout();
+    */
 }
