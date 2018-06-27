@@ -3,33 +3,43 @@
 
 #include "article.h"
 
-class list{
-protected:
+class List{
+public:
     article* first;
 public:
+    List();
+    List(const List& old);
     virtual void printout();
-    virtual void savetofile();
+    virtual void savetofile(const char* fHandle);
+    virtual void addelement();
+    virtual void loadfromfile(const char* fHandle);
     void searchid();
     void searchdescr();
 };
 
-class FoodList: public list{
+class FoodList: public List{
 public:
-    void addelement();
-    void loadfromfile();
+    FoodList();
+    FoodList(const FoodList& old);
+    virtual void addelement();
+    virtual void loadfromfile(const char* fHandle);
 };
 
-class BookList: public list{
+class BookList: public List{
 public:
-    void addelement();
-    void loadfromfile();
+    BookList();
+    BookList(const BookList& old);
+    virtual void addelement();
+    virtual void loadfromfile(const char* fHandle);
     void searchauthor();
 };
 
-class MaterialList: public list{
+class MaterialList: public List{
 public:
-    void addelement();
-    void loadfromfile();
+    MaterialList();
+    MaterialList(const MaterialList& old);
+    virtual void addelement();
+    virtual void loadfromfile(const char* fHandle);
 };
 
 #endif // LIST_H_INCLUDED
