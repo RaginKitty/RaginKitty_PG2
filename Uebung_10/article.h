@@ -9,6 +9,7 @@ protected:
     int minstock;
     float price;
 
+public:
     article* next;
 
 public:
@@ -16,8 +17,8 @@ public:
     article(char* dscr, int ident, int stck, int minstck, float prce);
     virtual void input();
     virtual void printout();
-    virtual void savetofile();
-    virtual void loadfromfile();
+    virtual void savetofile(const char* fHandle) = 0;
+    virtual void loadfromfile(const char* fHandle);
     void addstock(int delta);
     void removestock(int delta);
 };
@@ -31,8 +32,8 @@ public:
     food(char* dscr, int ident, int stck, int minstck, float prce, char* suppler, int strability);
     virtual void input();
     virtual void printout();
-    virtual void savetofile();
-    virtual void loadfromfile();
+    virtual void savetofile(const char* fHandle);
+    virtual void loadfromfile(const char* fHandle);
 };
 
 class book: public article{
@@ -44,8 +45,8 @@ public:
     book(char* dscr, int ident, int stck, int minstck, float prce, char* pblisher, char* authr);
     virtual void input();
     virtual void printout();
-    virtual void savetofile();
-    virtual void loadfromfile();
+    virtual void savetofile(const char* fHandle);
+    virtual void loadfromfile(const char* fHandle);
 };
 
 class material: public article{
@@ -57,8 +58,8 @@ public:
     material(char* dscr, int ident, int stck, int minstck, float prce, char* suppler, float wght);
     virtual void input();
     virtual void printout();
-    virtual void savetofile();
-    virtual void loadfromfile();
+    virtual void savetofile(const char* fHandle);
+    virtual void loadfromfile(const char* fHandle);
 };
 
 #endif // ARTICLE_H_INCLUDED
