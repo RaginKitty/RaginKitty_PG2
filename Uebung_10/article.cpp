@@ -48,24 +48,48 @@ void article::savetofile(const char* fHandle){
 }
 
 void article::loadfromfile(const char* fHandle){
-    std::ifstream fs(fHandle);
-    char str[20];
+    std::ifstream fs(fHandle, std::ifstream::binary);
     if(!fs){
         std::cout << "Couldn't open file!" << std::endl;
     }
     else{
-            char c;
-            while(c != '*'){
-                fs.seekg(1, std::ios::cur);
-                fs.get(c);
+        std::cout << "Article::loadfromfile executing!" << std::endl;
+            fs.seekg(0, fs.end);
+            int length = fs.tellg();
+            fs.seekg(0, fs.beg);
+
+            char* content = new char [length];
+
+            std::cout << "Reading " << length << " characters...";
+            fs.read(content, length);
+
+            if(fs){
+                std::cout << "all characters read successfully." << std::endl;
+                std::cout << content << std::endl;
             }
-            fs.seekg(3, std::ios::cur);
-            fs >> descr;
-            fs >> id;
-            fs >> stock;
-            fs >> minstock;
-            fs >> price;
-            fs.close();
+            else{
+                std::cout << "error: only " << fs.gcount() << " could be read!" << std::endl;
+            }
+
+            char dscr[20] = {0};
+            char read = 0;
+            int i = 0;
+            while(read == '*'){
+                read = content[i];
+                i++;
+            }
+            while(read == '\n'){
+                read = content[i];
+                i++;
+            }
+            while(read != '\n'){
+                int j = 0;
+                read = content[i];
+                dscr[j] = read;
+                i++;
+                j++;
+            }
+            strcpy(descr, dscr);
     }
 }
 void article::addstock(int delta){
