@@ -23,17 +23,19 @@ void List::addelement(){
 void List::loadfromfile(const char* fHandle){
     article* particle = first;
     std::ifstream fs(fHandle);
-    char temp[100];
+    char c[100];
     if(fs){
         std::cout << "File open!" << std::endl;
-        while(temp << fs.get()){
-            particle->loadfromfile(fHandle);
+        while(fs >> c){
+            particle->loadfromfile(fs);
+            particle->next = new article;
             particle = particle->next;
         }
     }
     else{
         std::cout << "File couldn't be opened!" << std::endl;
     }
+    fs.close();
 }
 void List::savetofile(const char* fHandle){
     article* particle = first;
@@ -57,19 +59,21 @@ void FoodList::loadfromfile(const char* fHandle){
     food* fparticle = new food;
     article* particle = (article*)fparticle;
     first = particle;
+    char c[100];
     std::ifstream fs(fHandle);
     if(fs){
         std::cout << "Food File open!" << std::endl;
-        while(particle != 0){
-            std::cout << "Food File while Schleife!" << std::endl;
-            particle->loadfromfile(fHandle);
+        while(fs >> c){
+            particle->loadfromfile(fs);
+            particle->next = new food;
             particle = particle->next;
         }
-        std::cout << "nicht Food File while Schleife!" << std::endl;
     }
     else{
-        std::cout << "Food File couldn't be opened!" << std::endl;
+        std::cout << "Book File couldn't be opened!" << std::endl;
     }
+    std::cout << "Closing Food File!" << std::endl;
+    fs.close();
 }
 
 BookList::BookList(): List(){}
@@ -78,18 +82,22 @@ void BookList::addelement(){}
 void BookList::loadfromfile(const char* fHandle){
     book* bparticle = new book;
     article* particle = (article*)bparticle;
-    particle = first;
+    first = particle;
+    char c[100];
     std::ifstream fs(fHandle);
     if(fs){
         std::cout << "Book File open!" << std::endl;
-        while(particle != 0){
-            particle->loadfromfile(fHandle);
+        while(fs >> c){
+            particle->loadfromfile(fs);
+            particle->next = new book;
             particle = particle->next;
         }
     }
     else{
         std::cout << "Book File couldn't be opened!" << std::endl;
     }
+    std::cout << "Closing Book File!" << std::endl;
+    fs.close();
 }
 void BookList::searchauthor(){}
 
@@ -99,16 +107,20 @@ void MaterialList::addelement(){}
 void MaterialList::loadfromfile(const char* fHandle){
     material* mparticle = new material;
     article* particle = (article*)mparticle;
-    particle = first;
+    first = particle;
+    char c[100];
     std::ifstream fs(fHandle);
     if(fs){
         std::cout << "Material File open!" << std::endl;
-        while(particle != 0){
-            particle->loadfromfile(fHandle);
+        while(fs >> c){
+            particle->loadfromfile(fs);
+            particle->next = new material;
             particle = particle->next;
         }
     }
     else{
         std::cout << "Material File couldn't be opened!" << std::endl;
     }
+    std::cout << "Closing Material File!" << std::endl;
+    fs.close();
 }
