@@ -1,6 +1,8 @@
 #ifndef ARTICLE_H_INCLUDED
 #define ARTICLE_H_INCLUDED
 
+#include <fstream>
+
 class article{
 protected:
     char* descr;
@@ -17,8 +19,8 @@ public:
     article(char* dscr, int ident, int stck, int minstck, float prce);
     virtual void input();
     virtual void printout();
-    virtual void savetofile(const char* fHandle) = 0;
-    virtual void loadfromfile(const char* fHandle);
+    virtual void savetofile(const char* fHandle);
+    virtual void loadfromfile(std::ifstream& fs);
     void addstock(int delta);
     void removestock(int delta);
 };
@@ -33,7 +35,7 @@ public:
     virtual void input();
     virtual void printout();
     virtual void savetofile(const char* fHandle);
-    virtual void loadfromfile(const char* fHandle);
+    virtual void loadfromfile(std::ifstream& fs);
 };
 
 class book: public article{
@@ -46,7 +48,7 @@ public:
     virtual void input();
     virtual void printout();
     virtual void savetofile(const char* fHandle);
-    virtual void loadfromfile(const char* fHandle);
+    virtual void loadfromfile(std::ifstream& fs);
 };
 
 class material: public article{
@@ -59,7 +61,7 @@ public:
     virtual void input();
     virtual void printout();
     virtual void savetofile(const char* fHandle);
-    virtual void loadfromfile(const char* fHandle);
+    virtual void loadfromfile(std::ifstream& fs);
 };
 
 #endif // ARTICLE_H_INCLUDED
