@@ -47,50 +47,12 @@ void article::savetofile(const char* fHandle){
         }
 }
 
-void article::loadfromfile(const char* fHandle){
-    std::ifstream fs(fHandle, std::ifstream::binary);
-    if(!fs){
-        std::cout << "Couldn't open file!" << std::endl;
-    }
-    else{
-        std::cout << "Article::loadfromfile executing!" << std::endl;
-            fs.seekg(0, fs.end);
-            int length = fs.tellg();
-            fs.seekg(0, fs.beg);
-
-            char* content = new char [length];
-
-            std::cout << "Reading " << length << " characters...";
-            fs.read(content, length);
-
-            if(fs){
-                std::cout << "all characters read successfully." << std::endl;
-                std::cout << content << std::endl;
-            }
-            else{
-                std::cout << "error: only " << fs.gcount() << " could be read!" << std::endl;
-            }
-
-            char dscr[20] = {0};
-            char read = 0;
-            int i = 0;
-            while(read == '*'){
-                read = content[i];
-                i++;
-            }
-            while(read == '\n'){
-                read = content[i];
-                i++;
-            }
-            while(read != '\n'){
-                int j = 0;
-                read = content[i];
-                dscr[j] = read;
-                i++;
-                j++;
-            }
-            strcpy(descr, dscr);
-    }
+void article::loadfromfile(std::ifstream& fs){
+            fs >> descr;
+            fs >> id;
+            fs >> stock;
+            fs >> minstock;
+            fs >> price;
 }
 void article::addstock(int delta){
     stock = stock + delta;
@@ -140,8 +102,10 @@ void food::savetofile(const char* fHandle){
             fs.close();
         }
 }
-void food::loadfromfile(const char* fHandle){
-    article::loadfromfile(fHandle);
+void food::loadfromfile(std::ifstream& fs){
+    article::loadfromfile(fs);
+    fs >> supplier;
+    fs >> storeability;
 }
 
 
@@ -184,8 +148,10 @@ void book::savetofile(const char* fHandle){
             fs.close();
         }
 }
-void book::loadfromfile(const char* fHandle){
-    article::loadfromfile(fHandle);
+void book::loadfromfile(std::ifstream& fs){
+    article::loadfromfile(fs);
+    fs >> publisher;
+    fs >> author;
 }
 
 
@@ -225,6 +191,8 @@ void material::savetofile(const char* fHandle){
             fs.close();
         }
 }
-void material::loadfromfile(const char* fHandle){
-    article::loadfromfile(fHandle);
+void material::loadfromfile(std::ifstream& fs){
+    article::loadfromfile(fs);
+    fs >> supplier;
+    fs >> weight;
 }
